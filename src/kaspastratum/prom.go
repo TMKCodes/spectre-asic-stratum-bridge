@@ -5,11 +5,11 @@ import (
 	"net/http"
 	"sync"
 
-	"github.com/astrix-network/astrixd/app/appmessage"
 	"github.com/onemorebsmith/kaspastratum/src/gostratum"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promauto"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
+	"github.com/spectre-project/spectred/app/appmessage"
 	"go.uber.org/zap"
 )
 

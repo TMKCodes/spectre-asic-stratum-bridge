@@ -9,13 +9,13 @@ import (
 	"sync"
 	"time"
 
-	"github.com/astrix-network/astrixd/app/appmessage"
-	"github.com/astrix-network/astrixd/domain/consensus/model/externalapi"
-	"github.com/astrix-network/astrixd/domain/consensus/utils/consensushashing"
-	"github.com/astrix-network/astrixd/domain/consensus/utils/pow"
-	"github.com/astrix-network/astrixd/infrastructure/network/rpcclient"
 	"github.com/onemorebsmith/kaspastratum/src/gostratum"
 	"github.com/pkg/errors"
+	"github.com/spectre-project/spectred/app/appmessage"
+	"github.com/spectre-project/spectred/domain/consensus/model/externalapi"
+	"github.com/spectre-project/spectred/domain/consensus/utils/consensushashing"
+	"github.com/spectre-project/spectred/domain/consensus/utils/pow"
+	"github.com/spectre-project/spectred/infrastructure/network/rpcclient"
 	"go.uber.org/atomic"
 	"go.uber.org/zap"
 )

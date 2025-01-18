@@ -9,7 +9,7 @@ import (
 	"log"
 	"math/big"
 
-	"github.com/astrix-network/astrixd/app/appmessage"
+	"github.com/spectre-project/spectred/app/appmessage"
 	"golang.org/x/crypto/blake2b"
 )
 

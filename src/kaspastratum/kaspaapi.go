@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/astrix-network/astrixd/app/appmessage"
-	"github.com/astrix-network/astrixd/infrastructure/network/rpcclient"
 	"github.com/onemorebsmith/kaspastratum/src/gostratum"
 	"github.com/pkg/errors"
+	"github.com/spectre-project/spectred/app/appmessage"
+	"github.com/spectre-project/spectred/infrastructure/network/rpcclient"
 	"go.uber.org/zap"
 )
 
@@ -132,7 +132,7 @@ func (s *KaspaApi) startBlockTemplateListener(ctx context.Context, blockReadyCb 
 func (ks *KaspaApi) GetBlockTemplate(
 	client *gostratum.StratumContext) (*appmessage.GetBlockTemplateResponseMessage, error) {
 	template, err := ks.kaspad.GetBlockTemplate(client.WalletAddr,
-		fmt.Sprintf(`'%s' via TMKCodes/astrix-asic-stratum-bridge_%s`, client.RemoteApp, version))
+		fmt.Sprintf(`'%s' via TMKCodes/spectre-asic-stratum-bridge_%s`, client.RemoteApp, version))
 	if err != nil {
 		return nil, errors.Wrap(err, "failed fetching new block template from kaspa")
 	}

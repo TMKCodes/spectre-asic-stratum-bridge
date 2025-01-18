@@ -5,9 +5,9 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/astrix-network/astrixd/util"
 	"github.com/mattn/go-colorable"
 	"github.com/pkg/errors"
+	"github.com/spectre-project/spectred/util"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 )
@@ -117,7 +117,7 @@ func SendExtranonce(ctx *StratumContext) {
 var walletRegex = regexp.MustCompile("astrix:[a-z0-9]+")
 
 func CleanWallet(in string) (string, error) {
-	_, err := util.DecodeAddress(in, util.Bech32PrefixAstrix)
+	_, err := util.DecodeAddress(in, util.Bech32PrefixSpectre)
 	if err == nil {
 		return in, nil // good to go
 	}

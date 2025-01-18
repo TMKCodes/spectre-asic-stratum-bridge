@@ -3,8 +3,8 @@ package kaspastratum
 import (
 	"testing"
 
-	"github.com/astrix-network/astrixd/app/appmessage"
 	"github.com/onemorebsmith/kaspastratum/src/gostratum"
+	"github.com/spectre-project/spectred/app/appmessage"
 )
 
 func TestPromValid(t *testing.T) {

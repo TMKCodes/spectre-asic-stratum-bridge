@@ -9,9 +9,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/astrix-network/astrixd/app/appmessage"
-	"github.com/astrix-network/astrixd/util/difficulty"
 	"github.com/google/go-cmp/cmp"
+	"github.com/spectre-project/spectred/app/appmessage"
+	"github.com/spectre-project/spectred/util/difficulty"
 )
 
 func TestHeaderSerialization(t *testing.T) {
