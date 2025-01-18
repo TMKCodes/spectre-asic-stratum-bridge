@@ -112,6 +112,7 @@ func (s *StratumListener) newClient(ctx context.Context, connection net.Conn) {
 }
 
 func (s *StratumListener) HandleEvent(ctx *StratumContext, event JsonRpcEvent) error {
+	fmt.Printf("Event received: %+v\n", event)
 	if handler, exists := s.HandlerMap[string(event.Method)]; exists {
 		return handler(ctx, event)
 	}

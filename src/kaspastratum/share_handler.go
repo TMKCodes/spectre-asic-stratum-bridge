@@ -9,11 +9,11 @@ import (
 	"sync"
 	"time"
 
-	"github.com/kaspanet/kaspad/app/appmessage"
-	"github.com/kaspanet/kaspad/domain/consensus/model/externalapi"
-	"github.com/kaspanet/kaspad/domain/consensus/utils/consensushashing"
-	"github.com/kaspanet/kaspad/domain/consensus/utils/pow"
-	"github.com/kaspanet/kaspad/infrastructure/network/rpcclient"
+	"github.com/astrix-network/astrixd/app/appmessage"
+	"github.com/astrix-network/astrixd/domain/consensus/model/externalapi"
+	"github.com/astrix-network/astrixd/domain/consensus/utils/consensushashing"
+	"github.com/astrix-network/astrixd/domain/consensus/utils/pow"
+	"github.com/astrix-network/astrixd/infrastructure/network/rpcclient"
 	"github.com/onemorebsmith/kaspastratum/src/gostratum"
 	"github.com/pkg/errors"
 	"go.uber.org/atomic"
@@ -88,6 +88,7 @@ type submitInfo struct {
 }
 
 func validateSubmit(ctx *gostratum.StratumContext, event gostratum.JsonRpcEvent) (*submitInfo, error) {
+	fmt.Printf("Event received: %+v\n", event)
 	if len(event.Params) < 3 {
 		RecordWorkerError(ctx.WalletAddr, ErrBadDataFromMiner)
 		return nil, fmt.Errorf("malformed event, expected at least 2 params")
@@ -144,6 +145,7 @@ func (sh *shareHandler) checkStales(ctx *gostratum.StratumContext, si *submitInf
 }
 
 func (sh *shareHandler) HandleSubmit(ctx *gostratum.StratumContext, event gostratum.JsonRpcEvent) error {
+	fmt.Printf("Event received: %+v\n", event)
 	submitInfo, err := validateSubmit(ctx, event)
 	if err != nil {
 		return err

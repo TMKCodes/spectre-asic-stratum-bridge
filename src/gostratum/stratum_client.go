@@ -25,12 +25,15 @@ func spawnClientListener(ctx *StratumContext, connection net.Conn, s *StratumLis
 			return s.HandleEvent(ctx, event)
 		})
 		if errors.Is(err, os.ErrDeadlineExceeded) {
+			//fmt.Printf("ErrDeadlineExceeded\n")
 			continue // expected timeout
 		}
 		if ctx.Err() != nil {
+			//fmt.Printf("Context cancelled\n")
 			return ctx.Err() // context cancelled
 		}
 		if ctx.parentContext.Err() != nil {
+			//fmt.Printf("ParentContext cancelled\n")
 			return ctx.parentContext.Err() // parent context cancelled
 		}
 		if err != nil { // actual error

@@ -2094,8 +2094,8 @@
       {
         "current": {
           "selected": false,
-          "text": "kaspa:qzccsk5fwrh3c88460a0a99srnmhwf5gy49dk2e96935px29u5uks92guhf98",
-          "value": "kaspa:qzccsk5fwrh3c88460a0a99srnmhwf5gy49dk2e96935px29u5uks92guhf98"
+          "text": "astrix:qzccsk5fwrh3c88460a0a99srnmhwf5gy49dk2e96935px29u5uks92guhf98",
+          "value": "astrix:qzccsk5fwrh3c88460a0a99srnmhwf5gy49dk2e96935px29u5uks92guhf98"
         },
         "datasource": {
           "type": "prometheus",

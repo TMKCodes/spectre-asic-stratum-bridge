@@ -5,7 +5,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/kaspanet/kaspad/util"
+	"github.com/astrix-network/astrixd/util"
 	"github.com/mattn/go-colorable"
 	"github.com/pkg/errors"
 	"go.uber.org/zap"
@@ -48,6 +48,7 @@ func DefaultHandlers() StratumHandlerMap {
 }
 
 func HandleAuthorize(ctx *StratumContext, event JsonRpcEvent) error {
+	fmt.Printf("Event received: %+v\n", event)
 	if len(event.Params) < 1 {
 		return fmt.Errorf("malformed event from miner, expected param[1] to be address")
 	}
@@ -83,6 +84,7 @@ func HandleAuthorize(ctx *StratumContext, event JsonRpcEvent) error {
 }
 
 func HandleSubscribe(ctx *StratumContext, event JsonRpcEvent) error {
+	fmt.Printf("Event received: %+v\n", event)
 	if err := ctx.Reply(NewResponse(event,
 		[]any{true, "EthereumStratum/1.0.0"}, nil)); err != nil {
 		return errors.Wrap(err, "failed to send response to subscribe")
@@ -105,24 +107,25 @@ func HandleSubmit(ctx *StratumContext, event JsonRpcEvent) error {
 }
 
 func SendExtranonce(ctx *StratumContext) {
+	fmt.Printf("Event SendExtranonce: %+v\n", ctx.Extranonce)
 	if err := ctx.Send(NewEvent("", "set_extranonce", []any{ctx.Extranonce})); err != nil {
 		// should we doing anything further on failure
 		ctx.Logger.Error(errors.Wrap(err, "failed to set extranonce").Error(), zap.Any("context", ctx))
 	}
 }
 
-var walletRegex = regexp.MustCompile("kaspa:[a-z0-9]+")
+var walletRegex = regexp.MustCompile("astrix:[a-z0-9]+")
 
 func CleanWallet(in string) (string, error) {
-	_, err := util.DecodeAddress(in, util.Bech32PrefixKaspa)
+	_, err := util.DecodeAddress(in, util.Bech32PrefixAstrix)
 	if err == nil {
 		return in, nil // good to go
 	}
-	if !strings.HasPrefix(in, "kaspa:") {
-		return CleanWallet("kaspa:" + in)
+	if !strings.HasPrefix(in, "astrix:") {
+		return CleanWallet("astrix:" + in)
 	}
 
-	// has kaspa: prefix but other weirdness somewhere
+	// has astrix: prefix but other weirdness somewhere
 	if walletRegex.MatchString(in) {
 		return in[0:67], nil
 	}

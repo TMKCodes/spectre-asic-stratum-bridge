@@ -3,7 +3,7 @@ package kaspastratum
 import (
 	"testing"
 
-	"github.com/kaspanet/kaspad/app/appmessage"
+	"github.com/astrix-network/astrixd/app/appmessage"
 	"github.com/onemorebsmith/kaspastratum/src/gostratum"
 )
 
@@ -12,7 +12,7 @@ func TestPromValid(t *testing.T) {
 	// is valid to write to here
 	ctx := gostratum.StratumContext{}
 
-	RecordShareFound(&ctx)
+	RecordShareFound(&ctx, 0)
 	RecordStaleShare(&ctx)
 	RecordDupeShare(&ctx)
 	RecordInvalidShare(&ctx)

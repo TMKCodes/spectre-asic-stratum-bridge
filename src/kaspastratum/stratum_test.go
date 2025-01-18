@@ -9,9 +9,9 @@ import (
 	"testing"
 	"time"
 
+	"github.com/astrix-network/astrixd/app/appmessage"
+	"github.com/astrix-network/astrixd/util/difficulty"
 	"github.com/google/go-cmp/cmp"
-	"github.com/kaspanet/kaspad/app/appmessage"
-	"github.com/kaspanet/kaspad/util/difficulty"
 )
 
 func TestHeaderSerialization(t *testing.T) {

@@ -84,6 +84,7 @@ func (c *clientListener) OnDisconnect(ctx *gostratum.StratumContext) {
 }
 
 func (c *clientListener) NewBlockAvailable(kapi *KaspaApi) {
+	// c.logger.Info("New block!")
 	c.clientLock.Lock()
 	addresses := make([]string, 0, len(c.clients))
 	for _, cl := range c.clients {
@@ -109,7 +110,7 @@ func (c *clientListener) NewBlockAvailable(kapi *KaspaApi) {
 					client.Disconnect() // unrecoverable
 				} else {
 					RecordWorkerError(client.WalletAddr, ErrFailedBlockFetch)
-					client.Logger.Error(fmt.Sprintf("failed fetching new block template from kaspa: %s", err))
+					client.Logger.Error(fmt.Sprintf("failed fetching new block template from astrix: %s", err))
 				}
 				return
 			}
@@ -122,6 +123,7 @@ func (c *clientListener) NewBlockAvailable(kapi *KaspaApi) {
 			}
 
 			jobId := state.AddJob(template.Block)
+			//c.logger.Info("JobID", jobId)
 			if !state.initialized {
 				state.initialized = true
 				state.useBigJob = bigJobRegex.MatchString(client.RemoteApp)
@@ -138,6 +140,7 @@ func (c *clientListener) NewBlockAvailable(kapi *KaspaApi) {
 					return
 				}
 			}
+			//c.logger.Info("mining.set_difficulty done")
 
 			jobParams := []any{fmt.Sprintf("%d", jobId)}
 			if state.useBigJob {
@@ -161,6 +164,7 @@ func (c *clientListener) NewBlockAvailable(kapi *KaspaApi) {
 				RecordWorkerError(client.WalletAddr, ErrFailedSendWork)
 				client.Logger.Error(errors.Wrapf(err, "failed sending work packet %d", jobId).Error())
 			}
+			//c.logger.Info("mining.notify done")
 
 			RecordNewJob(client)
 		}(cl)
