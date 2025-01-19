@@ -110,7 +110,7 @@ func (c *clientListener) NewBlockAvailable(kapi *KaspaApi) {
 					client.Disconnect() // unrecoverable
 				} else {
 					RecordWorkerError(client.WalletAddr, ErrFailedBlockFetch)
-					client.Logger.Error(fmt.Sprintf("failed fetching new block template from astrix: %s", err))
+					client.Logger.Error(fmt.Sprintf("failed fetching new block template from spectre: %s", err))
 				}
 				return
 			}
